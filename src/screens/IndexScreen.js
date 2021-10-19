@@ -10,11 +10,12 @@ const {state, addBlogPost, deleteBlogPost} = useContext(Context);
     
     <View>
         <Text>Index Screen</Text>
-        <Button title= "Add Post" onPress={addBlogPost}/>
+        
         <FlatList
             data= {state}
             keyExtractor={blogPost=>blogPost.title}
-            renderItem={({item})=>{
+            renderItem={({item})=>{ 
+                
                 return <TouchableOpacity 
                 onPress={()=>navigation.navigate("Show", {id: item.id})}>
                  <View style={styles.row}>
@@ -34,7 +35,7 @@ const {state, addBlogPost, deleteBlogPost} = useContext(Context);
 };
 IndexScreen.navigationOptions =({navigation})=>{
     return {
-        headerRight: (<TouchableOpacity onPress={()=>navigation.navigate('Create')}>
+        headerRight:()=> (<TouchableOpacity onPress={()=>navigation.navigate('Create')}>
                       <Feather  name='plus' size={30}/>
                    </TouchableOpacity>
         )

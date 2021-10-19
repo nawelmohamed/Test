@@ -1,4 +1,5 @@
 
+import { useCallback } from "react";
 import CreateDataContext from "./CreateDataContext";
 
 const blogReducer = (state,action)=> {
@@ -19,16 +20,19 @@ const blogReducer = (state,action)=> {
 
 
 const addBlogPost = (dispatch) => {
-    return(title,content)=>{
+  
+    return(title,content, callback)=>{
         dispatch ({type: "add_blogPost", payload: {title, content}})
+        callback();
     }
     ;
 };
 
 const deleteBlogPost = (dispatch)=>{
     return id => {
-        dispatch({type: "delete_blogPost" , payload: id})
-    }
+        dispatch({type: "delete_blogPost" , payload: id});
+        
+    };
 }
 
 export const {Context, Provider}= CreateDataContext(
